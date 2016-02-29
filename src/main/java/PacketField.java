@@ -4,4 +4,6 @@
 public interface PacketField {
     PacketField setValue(String s);
     String toString();
+    String toStringSQL();
+    boolean isNull();
 }

@@ -1,22 +1,22 @@
 /**
  * Created by nastik on 27.02.16.
  */
-public class PacketFieldInt implements PacketField {
-    Integer value;
+public class PacketFieldString implements PacketField {
+    String value;
     String name;
 
-    public PacketFieldInt PacketFieldInt() {
+    public PacketFieldString PacketFieldString() {
         return this;
     }
 
-    public PacketFieldInt setName(String name) {
+    public PacketFieldString setName(String name) {
         this.name = name;
         return this;
     }
 
-    public PacketFieldInt setValue(String s) {
+    public PacketFieldString setValue(String s) {
         if (s.length() > 0) {
-            this.value = Integer.valueOf(s);
+            this.value = String.valueOf(s);
         }
         else {
             this.value = null;
@@ -26,13 +26,16 @@ public class PacketFieldInt implements PacketField {
 
     @Override
     public String toString(){
-        return String.valueOf(this.value);
+        if (isNull()) { return null; }
+        else {
+            return "'"+ String.valueOf(this.value) + "'";
+        }
     }
 
     public String toStringSQL(){
         if ( this.value == null || this.name == null ) { return null; }
         else {
-            return this.name + " = " + String.valueOf(this.value);
+            return this.name + " = '" + String.valueOf(this.value) + "'";
         }
     }
 

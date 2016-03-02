@@ -1,29 +1,45 @@
+import java.time.LocalDate;
+
 /**
  * Created by nastik on 27.02.16.
  */
 public class TestPacket {
     public static void main(String[] args) {
-        PacketFieldLong devId = new PacketFieldLong()/*.setValue("")*/;
+        PacketFieldLong devId = new PacketFieldLong();
         System.out.println(devId.toString());
         devId.setValue("123456789012345");
         System.out.println(devId.toString());
 
-        PacketFieldInt devMode = new PacketFieldInt()/*.setValue("")*/;
+        PacketFieldInt devMode = new PacketFieldInt();
         System.out.println(devMode.toString());
         devMode.setValue("1");
         System.out.println(devMode.toString());
 
-        PacketFieldDate devDate = new PacketFieldDate()/*.setValue("")*/;
+        PacketFieldDate devDate = new PacketFieldDate();
         System.out.println(devDate.toString());
         devDate.setValue("20160228");
         System.out.println(devDate.toString());
 
-        PacketFieldTime devTime = new PacketFieldTime()/*.setValue("")*/;
+        PacketFieldTime devTime = new PacketFieldTime();
         System.out.println(devTime.toString());
         devTime.setValue("2359");
         System.out.println(devTime.toString());
         devTime.setValue("000");
         System.out.println(devTime.toString());
+
+        System.out.println("-------------");
+
+        PacketField devId2 = PacketFieldFactory.getField(Long.class, "deviceID", "123456789012345");
+        System.out.println(devId2.toString());
+        System.out.println(devId2.toStringSQL());
+
+        PacketField devDate2 = PacketFieldFactory.getField(LocalDate.class, "DEVICE_DATE_FIELD", "20160229");
+        System.out.println(devDate2.toString());
+        System.out.println(devDate2.toStringSQL());
+
+        devDate2 = PacketFieldFactory.getField(LocalDate.class, "DEVICE_DATE_FIELD", "");
+        System.out.println(devDate2.toString());
+        System.out.println(devDate2.toStringSQL());
 
         System.out.println("-------------");
 
@@ -61,5 +77,9 @@ public class TestPacket {
         catch (Exception e) {
             e.printStackTrace();
         }
+        //Class<Integer>
+         //       c= Integer::valueOf;
+        //c.
+
     }
 }
